@@ -1,0 +1,1 @@
+# BERSAMAJU.com
