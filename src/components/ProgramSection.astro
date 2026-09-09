@@ -1,0 +1,71 @@
+---
+// ProgramSection - Featured programs with 3 cards
+---
+
+<section id="program" class="py-20 bg-slate-50 dark:bg-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-secondary dark:text-green-400 font-bold tracking-wider uppercase text-sm mb-2">Program Unggulan</h2>
+            <h3 class="text-3xl md:text-4xl font-extrabold text-slate-800 dark:text-white">Pilih Kelas yang Sesuai Minatmu</h3>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Program Card 1 -->
+            <div class="bg-white dark:bg-darkcard rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100 dark:border-gray-800 flex flex-col">
+                <div class="h-2 w-full bg-primary group-hover:bg-accent transition-colors"></div>
+                <div class="p-8 flex-grow">
+                    <i class="fa-solid fa-laptop-code text-4xl text-primary dark:text-blue-400 mb-6 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="text-2xl font-bold text-slate-800 dark:text-white mb-3">Literasi Digital & Komputer</h4>
+                    <p class="text-slate-600 dark:text-gray-400 mb-6">Pelatihan pengoperasian komputer dasar, Microsoft Office, hingga penggunaan internet aman yang dirancang khusus untuk tunanetra dengan NVDA.</p>
+                </div>
+                <div class="px-8 pb-8">
+                    <button class="program-signup-btn text-primary dark:text-blue-400 font-bold flex items-center gap-2 group-hover:text-accent dark:group-hover:text-yellow-400 transition">
+                        Daftar Kelas Ini <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Program Card 2 -->
+            <div class="bg-white dark:bg-darkcard rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100 dark:border-gray-800 flex flex-col">
+                <div class="h-2 w-full bg-secondary group-hover:bg-accent transition-colors"></div>
+                <div class="p-8 flex-grow">
+                    <i class="fa-solid fa-hands-asl-interpreting text-4xl text-secondary dark:text-green-400 mb-6 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="text-2xl font-bold text-slate-800 dark:text-white mb-3">Kelas Bahasa Isyarat (BISINDO)</h4>
+                    <p class="text-slate-600 dark:text-gray-400 mb-6">Fasilitas belajar bahasa isyarat untuk sahabat tuli maupun masyarakat umum (dengar) guna menciptakan lingkungan yang inklusif.</p>
+                </div>
+                <div class="px-8 pb-8">
+                    <button class="program-signup-btn text-secondary dark:text-green-400 font-bold flex items-center gap-2 group-hover:text-accent dark:group-hover:text-yellow-400 transition">
+                        Daftar Kelas Ini <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Program Card 3 -->
+            <div class="bg-white dark:bg-darkcard rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100 dark:border-gray-800 flex flex-col">
+                <div class="h-2 w-full bg-accent group-hover:bg-primary transition-colors"></div>
+                <div class="p-8 flex-grow">
+                    <i class="fa-solid fa-store text-4xl text-accent dark:text-yellow-400 mb-6 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="text-2xl font-bold text-slate-800 dark:text-white mb-3">Kewirausahaan Mandiri</h4>
+                    <p class="text-slate-600 dark:text-gray-400 mb-6">Pelatihan wirausaha mencakup kerajinan tangan, kuliner, hingga pemasaran digital dasar untuk teman-teman tunadaksa agar mandiri finansial.</p>
+                </div>
+                <div class="px-8 pb-8">
+                    <button class="program-signup-btn text-accent dark:text-yellow-400 font-bold flex items-center gap-2 group-hover:text-primary dark:group-hover:text-blue-400 transition">
+                        Daftar Kelas Ini <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.program-signup-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                window.openModal?.('signup');
+            });
+        });
+    });
+</script>

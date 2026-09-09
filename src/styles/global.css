@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/* Enable class-based dark mode */
+@variant dark (&:where(.dark, .dark *));
+
+/* Custom Theme Configuration (Tailwind v4 CSS-first) */
+@theme {
+    --font-sans: 'Quicksand', sans-serif;
+    --font-dyslexia: 'OpenDyslexic', 'Comic Sans MS', sans-serif;
+    
+    --color-primary: #2563eb;
+    --color-secondary: #16a34a;
+    --color-accent: #eab308;
+    --color-darkbg: #0f172a;
+    --color-darkcard: #1e293b;
+}
+
+/* High Contrast Mode Override */
+html.a11y-high-contrast, body.a11y-high-contrast {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+html.a11y-high-contrast * {
+    border-color: #ffffff !important;
+}
+html.a11y-high-contrast .bg-white, 
+html.a11y-high-contrast .bg-slate-50, 
+html.a11y-high-contrast [class*="dark\:bg-darkbg"],
+html.a11y-high-contrast [class*="dark\:bg-darkcard"] {
+    background-color: #000000 !important;
+}
+html.a11y-high-contrast .text-slate-600, 
+html.a11y-high-contrast .text-slate-500,
+html.a11y-high-contrast [class*="dark\:text-gray-300"],
+html.a11y-high-contrast [class*="dark\:text-gray-400"] {
+    color: #dddddd !important;
+}
+html.a11y-high-contrast .bg-clip-text {
+    background: none !important;
+    color: #eab308 !important;
+    -webkit-text-fill-color: #eab308 !important;
+}
+
+/* Dyslexia Font Mode */
+html.a11y-dyslexia-font body {
+    font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif !important;
+}
+
+/* Stop Animations Mode */
+html.a11y-stop-animations,
+html.a11y-stop-animations body {
+    scroll-behavior: auto !important;
+}
+html.a11y-stop-animations * {
+    animation: none !important;
+    transition: none !important;
+}

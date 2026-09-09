@@ -1,0 +1,156 @@
+---
+// AuthModal - Login / Signup modal with form
+---
+
+<!-- Modal Form (Login / Sign Up) -->
+<div id="auth-modal" class="fixed inset-0 z-[70] hidden opacity-0 transition-opacity duration-300">
+    <!-- Backdrop -->
+    <div id="auth-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+    
+    <!-- Modal Content -->
+    <div class="flex items-center justify-center min-h-screen px-4 relative z-10">
+        <div id="auth-modal-content" class="relative bg-white dark:bg-darkcard w-full max-w-md p-8 rounded-3xl shadow-2xl transform scale-95 opacity-0 transition-all duration-300 flex flex-col border border-gray-100 dark:border-gray-800">
+            <!-- Close Button -->
+            <button id="auth-close-btn" class="absolute top-4 right-4 text-gray-400 hover:text-slate-800 dark:hover:text-white transition text-xl w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex justify-center items-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-8 mt-2">
+                <div class="w-12 h-12 mx-auto bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white mb-4 shadow-md">
+                    <i class="fa-solid fa-hands-holding-child text-xl"></i>
+                </div>
+                <h2 id="auth-title" class="text-2xl font-extrabold text-slate-800 dark:text-white">Masuk ke Akun</h2>
+                <p class="text-slate-500 dark:text-gray-400 mt-2 text-sm">Selamat datang kembali di platform BERSAMAJU.</p>
+            </div>
+
+            <form id="auth-form" class="space-y-4">
+                <div id="name-field" class="hidden transition-all duration-300">
+                    <label class="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-1">Nama Lengkap</label>
+                    <input type="text" placeholder="Masukkan nama Anda" class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-1">Email</label>
+                    <input type="email" required placeholder="email@contoh.com" class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-1">Kata Sandi</label>
+                    <input type="password" required placeholder="••••••••" class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                </div>
+                
+                <button type="submit" id="auth-submit" class="w-full bg-primary hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md mt-6">
+                    Masuk
+                </button>
+            </form>
+
+            <div class="mt-6 text-center text-sm text-slate-600 dark:text-gray-400 border-t border-gray-100 dark:border-gray-800 pt-6">
+                <span id="auth-toggle-text">Belum punya akun? </span>
+                <a href="#" id="auth-toggle-link" class="text-primary dark:text-blue-400 font-bold hover:underline">Daftar di sini</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const authModal = document.getElementById('auth-modal');
+        const authModalContent = document.getElementById('auth-modal-content');
+        const authTitle = document.getElementById('auth-title');
+        const authSubmit = document.getElementById('auth-submit');
+        const authToggleText = document.getElementById('auth-toggle-text');
+        const authToggleLink = document.getElementById('auth-toggle-link');
+        const nameField = document.getElementById('name-field');
+        const authForm = document.getElementById('auth-form') as HTMLFormElement;
+
+        let isLoginMode = true;
+
+        window.openModal = function(type: string) {
+            if (!authModal) return;
+            authModal.classList.remove('hidden');
+            setTimeout(() => {
+                authModal.classList.remove('opacity-0');
+                authModalContent?.classList.remove('scale-95', 'opacity-0');
+            }, 10);
+
+            if (type === 'login') {
+                setLoginMode();
+            } else {
+                setSignupMode();
+            }
+        };
+
+        window.closeModal = function() {
+            if (!authModal) return;
+            authModal.classList.add('opacity-0');
+            authModalContent?.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                authModal.classList.add('hidden');
+            }, 300);
+        };
+
+        function setLoginMode() {
+            isLoginMode = true;
+            if(authTitle) authTitle.textContent = 'Masuk ke Akun';
+            if(authSubmit) authSubmit.textContent = 'Masuk';
+            if(authToggleText) authToggleText.textContent = 'Belum punya akun? ';
+            if(authToggleLink) authToggleLink.textContent = 'Daftar di sini';
+            nameField?.classList.add('hidden');
+            nameField?.querySelector('input')?.removeAttribute('required');
+        }
+
+        function setSignupMode() {
+            isLoginMode = false;
+            if(authTitle) authTitle.textContent = 'Daftar Akun Baru';
+            if(authSubmit) authSubmit.textContent = 'Daftar';
+            if(authToggleText) authToggleText.textContent = 'Sudah punya akun? ';
+            if(authToggleLink) authToggleLink.textContent = 'Masuk di sini';
+            nameField?.classList.remove('hidden');
+            nameField?.querySelector('input')?.setAttribute('required', 'true');
+        }
+
+        // Toggle between login/signup
+        authToggleLink?.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (isLoginMode) setSignupMode();
+            else setLoginMode();
+        });
+
+        // Backdrop click to close
+        document.getElementById('auth-backdrop')?.addEventListener('click', () => {
+            window.closeModal?.();
+        });
+
+        // Close button
+        document.getElementById('auth-close-btn')?.addEventListener('click', () => {
+            window.closeModal?.();
+        });
+
+        // Form submission
+        authForm?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('auth-submit');
+            if (!btn) return;
+            const originalText = btn.textContent;
+            
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Memproses...';
+            (btn as HTMLButtonElement).disabled = true;
+            btn.classList.add('opacity-70', 'cursor-not-allowed');
+
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Berhasil!';
+                btn.classList.remove('bg-primary', 'hover:bg-blue-700', 'opacity-70', 'cursor-not-allowed');
+                btn.classList.add('bg-green-500', 'hover:bg-green-600', 'text-white');
+                
+                setTimeout(() => {
+                    window.closeModal?.();
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        (btn as HTMLButtonElement).disabled = false;
+                        btn.classList.remove('bg-green-500', 'hover:bg-green-600');
+                        btn.classList.add('bg-primary', 'hover:bg-blue-700');
+                        authForm.reset();
+                    }, 400);
+                }, 1000);
+            }, 1500);
+        });
+    });
+</script>

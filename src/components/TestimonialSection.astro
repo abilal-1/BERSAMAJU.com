@@ -1,0 +1,140 @@
+---
+// TestimonialSection - Success stories slider with navigation
+---
+
+<section id="testimoni" class="py-20 bg-white dark:bg-darkbg overflow-hidden relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center relative z-10">
+        <h2 class="text-primary dark:text-blue-400 font-bold tracking-wider uppercase text-sm mb-2">Kisah Sukses</h2>
+        <h3 class="text-3xl md:text-4xl font-extrabold text-slate-800 dark:text-white">Mereka yang Telah Berhasil</h3>
+    </div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+        <!-- Navigation Arrows Desktop -->
+        <div class="absolute top-1/2 -translate-y-1/2 left-0 lg:-left-6 z-20 hidden md:block">
+            <button id="prev-testi" class="w-12 h-12 bg-white dark:bg-darkcard text-primary dark:text-blue-400 rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transition focus:outline-none focus:ring-4 focus:ring-blue-200">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+        </div>
+        <div class="absolute top-1/2 -translate-y-1/2 right-0 lg:-right-6 z-20 hidden md:block">
+            <button id="next-testi" class="w-12 h-12 bg-white dark:bg-darkcard text-primary dark:text-blue-400 rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transition focus:outline-none focus:ring-4 focus:ring-blue-200">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Slider Track -->
+        <div class="overflow-hidden p-2 -m-2">
+            <div id="testi-track" class="flex gap-6 transition-transform duration-500 ease-in-out w-max">
+                <!-- Card 1 -->
+                <div class="w-[300px] md:w-[350px] lg:w-[400px] flex-shrink-0 bg-blue-50 dark:bg-darkcard p-8 rounded-3xl border border-blue-100 dark:border-gray-800 flex flex-col justify-between">
+                    <div>
+                        <i class="fa-solid fa-quote-left text-4xl text-primary/20 dark:text-blue-500/20 mb-4"></i>
+                        <p class="text-lg text-slate-700 dark:text-gray-300 font-medium italic mb-6 whitespace-normal">
+                            "Berkat kelas komputer dari BERSAMAJU, saya yang seorang tunanetra kini bisa bekerja sebagai customer service di perusahaan ternama. Materi NVDA sangat membantu!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <img src="https://ui-avatars.com/api/?name=Budi+Santoso&background=2563eb&color=fff" onerror="this.onerror=null;this.src='https://placehold.co/100x100/2563eb/ffffff?text=BS';" alt="Foto Budi" class="w-14 h-14 rounded-full shadow-md">
+                        <div>
+                            <h4 class="font-bold text-slate-800 dark:text-white">Budi Santoso</h4>
+                            <p class="text-sm text-primary dark:text-blue-400 font-semibold">Alumni Kelas Komputer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="w-[300px] md:w-[350px] lg:w-[400px] flex-shrink-0 bg-green-50 dark:bg-darkcard p-8 rounded-3xl border border-green-100 dark:border-gray-800 flex flex-col justify-between">
+                    <div>
+                        <i class="fa-solid fa-quote-left text-4xl text-secondary/20 dark:text-green-500/20 mb-4"></i>
+                        <p class="text-lg text-slate-700 dark:text-gray-300 font-medium italic mb-6 whitespace-normal">
+                            "Belajar bahasa isyarat di sini sangat menyenangkan. Relawannya sabar dan materi mudah dipahami. Kini saya lebih percaya diri bersosialisasi."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <img src="https://ui-avatars.com/api/?name=Siti+Aisyah&background=16a34a&color=fff" onerror="this.onerror=null;this.src='https://placehold.co/100x100/16a34a/ffffff?text=SA';" alt="Foto Siti" class="w-14 h-14 rounded-full shadow-md">
+                        <div>
+                            <h4 class="font-bold text-slate-800 dark:text-white">Siti Aisyah</h4>
+                            <p class="text-sm text-secondary dark:text-green-400 font-semibold">Alumni Kelas BISINDO</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="w-[300px] md:w-[350px] lg:w-[400px] flex-shrink-0 bg-yellow-50 dark:bg-darkcard p-8 rounded-3xl border border-yellow-100 dark:border-gray-800 flex flex-col justify-between">
+                    <div>
+                        <i class="fa-solid fa-quote-left text-4xl text-accent/20 dark:text-yellow-500/20 mb-4"></i>
+                        <p class="text-lg text-slate-700 dark:text-gray-300 font-medium italic mb-6 whitespace-normal">
+                            "Keterbatasan fisik bukan halangan. Melalui pelatihan wirausaha, saya sukses membuka toko kerajinan online sendiri."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <img src="https://ui-avatars.com/api/?name=Rina+Sari&background=eab308&color=fff" onerror="this.onerror=null;this.src='https://placehold.co/100x100/eab308/ffffff?text=RS';" alt="Foto Rina" class="w-14 h-14 rounded-full shadow-md">
+                        <div>
+                            <h4 class="font-bold text-slate-800 dark:text-white">Rina Sari</h4>
+                            <p class="text-sm text-yellow-600 dark:text-yellow-400 font-semibold">Alumni Wirausaha</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="w-[300px] md:w-[350px] lg:w-[400px] flex-shrink-0 bg-pink-50 dark:bg-darkcard p-8 rounded-3xl border border-pink-100 dark:border-gray-800 flex flex-col justify-between">
+                    <div>
+                        <i class="fa-solid fa-quote-left text-4xl text-pink-500/20 dark:text-pink-500/20 mb-4"></i>
+                        <p class="text-lg text-slate-700 dark:text-gray-300 font-medium italic mb-6 whitespace-normal">
+                            "Awalnya saya malu bicara. Sejak ikut kelas Public Speaking, saya berani membagikan kisah saya di depan umum untuk menginspirasi teman difabel lain."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <img src="https://ui-avatars.com/api/?name=Andi+Dharma&background=ec4899&color=fff" onerror="this.onerror=null;this.src='https://placehold.co/100x100/ec4899/ffffff?text=AD';" alt="Foto Andi" class="w-14 h-14 rounded-full shadow-md">
+                        <div>
+                            <h4 class="font-bold text-slate-800 dark:text-white">Andi Dharma</h4>
+                            <p class="text-sm text-pink-600 dark:text-pink-400 font-semibold">Alumni Public Speaking</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div class="flex justify-center gap-4 mt-8 md:hidden">
+             <button id="prev-testi-mobile" class="w-10 h-10 bg-white dark:bg-darkcard text-primary dark:text-blue-400 rounded-full shadow-md flex items-center justify-center hover:bg-primary hover:text-white transition focus:outline-none"><i class="fa-solid fa-chevron-left"></i></button>
+             <button id="next-testi-mobile" class="w-10 h-10 bg-white dark:bg-darkcard text-primary dark:text-blue-400 rounded-full shadow-md flex items-center justify-center hover:bg-primary hover:text-white transition focus:outline-none"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const testiTrack = document.getElementById('testi-track');
+        const prevBtns = [document.getElementById('prev-testi'), document.getElementById('prev-testi-mobile')];
+        const nextBtns = [document.getElementById('next-testi'), document.getElementById('next-testi-mobile')];
+        
+        let currentIndex = 0;
+        
+        function updateSlider() {
+            if (!testiTrack || !testiTrack.children.length) return;
+            
+            const card = testiTrack.children[0] as HTMLElement;
+            const gap = 24; 
+            const cardWidth = card.offsetWidth + gap;
+            
+            const containerWidth = (testiTrack.parentElement as HTMLElement).offsetWidth;
+            const visibleCards = Math.floor(containerWidth / cardWidth) || 1;
+            const maxIndex = testiTrack.children.length - visibleCards;
+            
+            if (currentIndex > maxIndex) currentIndex = maxIndex;
+            if (currentIndex < 0) currentIndex = 0;
+            
+            (testiTrack as HTMLElement).style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+        }
+
+        function slide(direction: number) {
+            currentIndex += direction;
+            updateSlider();
+        }
+
+        prevBtns.forEach(btn => btn?.addEventListener('click', () => slide(-1)));
+        nextBtns.forEach(btn => btn?.addEventListener('click', () => slide(1)));
+        
+        window.addEventListener('resize', updateSlider);
+    });
+</script>

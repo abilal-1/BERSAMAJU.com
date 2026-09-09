@@ -1,0 +1,56 @@
+---
+// BlogSection - Blog & news articles grid
+---
+
+<section id="blog" class="py-20 bg-slate-50 dark:bg-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-end mb-12">
+            <div>
+                <h2 class="text-secondary dark:text-green-400 font-bold tracking-wider uppercase text-sm mb-2">Artikel</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-slate-800 dark:text-white">Blog & Berita Terbaru</h3>
+            </div>
+            <button class="hidden md:block text-primary dark:text-blue-400 font-bold hover:underline">Lihat Semua Tulisan <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Blog 1 -->
+            <div class="bg-white dark:bg-darkcard rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition group cursor-pointer border border-gray-100 dark:border-gray-800">
+                <div class="h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&q=80" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=Edukasi';" alt="Belajar bersama" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-bold text-secondary dark:text-green-400 uppercase tracking-wider mb-2 block">Edukasi</span>
+                    <h4 class="text-xl font-bold text-slate-800 dark:text-white mb-2 group-hover:text-primary transition">Pentingnya Kurikulum Vokasi Adaptif</h4>
+                    <p class="text-slate-600 dark:text-gray-400 text-sm mb-4 line-clamp-3">Membahas bagaimana kurikulum yang disesuaikan dengan kebutuhan difabel dapat meningkatkan potensi penyerapan kerja secara signifikan di era modern.</p>
+                    <span class="text-sm text-gray-500 dark:text-gray-500">12 Oktober 2026</span>
+                </div>
+            </div>
+            <!-- Blog 2 -->
+            <div class="bg-white dark:bg-darkcard rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition group cursor-pointer border border-gray-100 dark:border-gray-800">
+                <div class="h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&q=80" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=Teknologi';" alt="Alat bantu dengar" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-bold text-primary dark:text-blue-400 uppercase tracking-wider mb-2 block">Teknologi</span>
+                    <h4 class="text-xl font-bold text-slate-800 dark:text-white mb-2 group-hover:text-primary transition">5 Aplikasi Pendukung Belajar Netra</h4>
+                    <p class="text-slate-600 dark:text-gray-400 text-sm mb-4 line-clamp-3">Ulasan mendalam mengenai screen reader dan aplikasi berbasis AI terbaru yang memudahkan teman-teman tunanetra dalam membaca materi digital.</p>
+                    <span class="text-sm text-gray-500 dark:text-gray-500">08 Oktober 2026</span>
+                </div>
+            </div>
+            <!-- Blog 3 -->
+            <div class="bg-white dark:bg-darkcard rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition group cursor-pointer border border-gray-100 dark:border-gray-800">
+                <div class="h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=600&q=80" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=Kisah+Inspiratif';" alt="Orang berkumpul di acara" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-bold text-accent dark:text-yellow-500 uppercase tracking-wider mb-2 block">Kisah Inspiratif</span>
+                    <h4 class="text-xl font-bold text-slate-800 dark:text-white mb-2 group-hover:text-primary transition">Merajut Mimpi Lewat Kerajinan Rotan</h4>
+                    <p class="text-slate-600 dark:text-gray-400 text-sm mb-4 line-clamp-3">Cerita dari Kak Dimas, alumni pelatihan wirausaha BERSAMAJU yang produk kerajinan tangannya berhasil menembus pasar ekspor Asia.</p>
+                    <span class="text-sm text-gray-500 dark:text-gray-500">01 Oktober 2026</span>
+                </div>
+            </div>
+        </div>
+        
+        <button class="md:hidden mt-8 w-full py-3 text-center border-2 border-primary text-primary dark:border-blue-400 dark:text-blue-400 rounded-full font-bold">Lihat Semua Tulisan</button>
+    </div>
+</section>

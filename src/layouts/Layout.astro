@@ -1,0 +1,39 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = 'BERSAMAJU - Pendidikan Inklusif untuk Kaum Difabel',
+  description = 'BERSAMAJU adalah platform pendidikan inklusif yang didedikasikan untuk kaum difabel. Mari raih kemandirian melalui edukasi tanpa batas.'
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content={description}>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Quicksand -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Dark mode init script (prevents FOUC) -->
+    <script is:inline>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-darkbg dark:text-slate-200 transition-colors duration-300 relative overflow-x-hidden">
+    <slot />
+</body>
+</html>
