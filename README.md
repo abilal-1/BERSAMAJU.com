@@ -1,1 +1,1 @@
-# BERSAMAJU.com
+# BERSAMAJU
