@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BERSAMAJU - Pendidikan Inklusif untuk Kaum Difabel</title>
+    <meta name="description" content="BERSAMAJU adalah platform pendidikan inklusif yang didedikasikan untuk kaum difabel. Mari raih kemandirian melalui edukasi tanpa batas.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Quicksand -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Konfigurasi Tailwind & Custom CSS -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Quicksand', 'sans-serif'],
+                        dyslexia: ['OpenDyslexic', 'Comic Sans MS', 'sans-serif'] // Fallback sederhana
+                    },
+                    colors: {
+                        primary: '#2563eb', // Biru
+                        secondary: '#16a34a', // Hijau
+                        accent: '#eab308', // Kuning
+                        darkbg: '#0f172a', // Slate-900 (Soft Dark Mode)
+                        darkcard: '#1e293b' // Slate-800
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* High Contrast Mode Override */
+        html.a11y-high-contrast, body.a11y-high-contrast {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+        }
+        html.a11y-high-contrast * {
+            border-color: #ffffff !important;
+        }
+        html.a11y-high-contrast .bg-white, 
+        html.a11y-high-contrast .bg-slate-50, 
+        html.a11y-high-contrast .dark\:bg-darkbg,
+        html.a11y-high-contrast .dark\:bg-darkcard {
+            background-color: #000000 !important;
+        }
+        html.a11y-high-contrast .text-slate-600, 
+        html.a11y-high-contrast .text-slate-500,
+        html.a11y-high-contrast .dark\:text-gray-300,
+        html.a11y-high-contrast .dark\:text-gray-400 {
+            color: #dddddd !important;
+        }
+        html.a11y-high-contrast .bg-clip-text {
+            background: none !important;
+            color: #eab308 !important; /* Warna kuning kontras tinggi */
+            -webkit-text-fill-color: #eab308 !important;
+        }
+
+        /* Dyslexia Font Mode */
+        html.a11y-dyslexia-font body {
+            font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif !important;
+        }
+
+        /* Stop Animations Mode (Kill all transitions, animations, and smooth scrolling) */
+        html.a11y-stop-animations,
+        html.a11y-stop-animations body {
+            scroll-behavior: auto !important;
+        }
+        html.a11y-stop-animations * {
+            animation: none !important;
+            transition: none !important;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-darkbg dark:text-slate-200 transition-colors duration-300 relative overflow-x-hidden">
+
+    <!-- Floating Pill Navbar -->
+    <nav id="navbar" class="fixed z-50 transition-all duration-500 top-0 left-0 w-full rounded-none px-4 py-4 md:top-6 md:left-1/2 md:-translate-x-1/2 md:w-[95%] md:max-w-7xl md:rounded-full md:px-6 md:py-3 bg-white/70 dark:bg-darkbg/70 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 shadow-sm md:shadow-2xl flex justify-between items-center">
+        
+        <!-- Logo -->
+        <div class="flex-shrink-0 flex items-center group cursor-pointer" onclick="window.scrollTo(0,0)">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white mr-2 transform transition duration-300 group-hover:rotate-12 group-hover:scale-110 shadow-md">
+                <i class="fa-solid fa-hands-holding-child text-lg"></i>
+            </div>
+            <span class="font-extrabold text-2xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary dark:from-blue-400 dark:to-green-400">
+                BERSAMAJU
+            </span>
+        </div>
+
+        <!-- Desktop Menu (App-like Pill Group) -->
+        <div class="hidden lg:flex space-x-1 items-center bg-gray-100/60 dark:bg-gray-800/60 p-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
+            <a href="#tentang" class="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold text-slate-600 dark:text-gray-300 hover:bg-white dark:hover:bg-darkcard hover:text-primary dark:hover:text-blue-400 hover:shadow-sm transition-all duration-300 group">
+                <i class="fa-solid fa-circle-info text-primary/50 dark:text-blue-400/50 group-hover:text-primary dark:group-hover:text-blue-400 transition-colors"></i> Tentang
+            </a>
+            <a href="#program" class="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold text-slate-600 dark:text-gray-300 hover:bg-white dark:hover:bg-darkcard hover:text-primary dark:hover:text-blue-400 hover:shadow-sm transition-all duration-300 group">
+                <i class="fa-solid fa-laptop-code text-secondary/50 dark:text-green-400/50 group-hover:text-secondary dark:group-hover:text-green-400 transition-colors"></i> Program
+            </a>
+            <a href="#testimoni" class="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold text-slate-600 dark:text-gray-300 hover:bg-white dark:hover:bg-darkcard hover:text-primary dark:hover:text-blue-400 hover:shadow-sm transition-all duration-300 group">
+                <i class="fa-solid fa-star text-accent/50 dark:text-yellow-400/50 group-hover:text-accent dark:group-hover:text-yellow-400 transition-colors"></i> Testimoni
+            </a>
+            <a href="#blog" class="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold text-slate-600 dark:text-gray-300 hover:bg-white dark:hover:bg-darkcard hover:text-primary dark:hover:text-blue-400 hover:shadow-sm transition-all duration-300 group">
+                <i class="fa-solid fa-newspaper text-pink-500/50 dark:text-pink-400/50 group-hover:text-pink-500 dark:group-hover:text-pink-400 transition-colors"></i> Blog
+            </a>
+        </div>
+
+        <!-- Action Buttons (Desktop) -->
+        <div class="hidden md:flex items-center space-x-3">
+            <!-- Tombol Dark Mode -->
+            <button id="theme-toggle" class="w-10 h-10 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-primary border border-transparent dark:border-gray-700 bg-gray-100/50 dark:bg-gray-800/50" aria-label="Toggle Dark Mode">
+                <i id="theme-toggle-dark-icon" class="fa-solid fa-moon hidden text-lg"></i>
+                <i id="theme-toggle-light-icon" class="fa-solid fa-sun hidden text-lg"></i>
+            </button>
+            
+            <button onclick="openModal('login')" class="text-slate-700 dark:text-gray-200 font-bold hover:text-primary dark:hover:text-blue-400 transition px-4 py-2.5 rounded-full hover:bg-gray-100/80 dark:hover:bg-gray-800/80">Masuk</button>
+            <button onclick="openModal('signup')" class="bg-gradient-to-r from-accent to-yellow-400 hover:from-yellow-400 hover:to-yellow-500 text-slate-900 px-6 py-2.5 rounded-full font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 focus:ring-4 focus:ring-yellow-300">
+                Daftar
+            </button>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden flex items-center space-x-4">
+            <!-- Tombol Dark Mode (Mobile) -->
+            <button id="theme-toggle-mobile" class="p-2 text-gray-500 dark:text-gray-400 bg-gray-100/50 dark:bg-gray-800/50 rounded-full w-10 h-10 flex items-center justify-center" aria-label="Toggle Dark Mode">
+                <i class="fa-solid fa-moon dark-icon hidden"></i>
+                <i class="fa-solid fa-sun light-icon hidden"></i>
+            </button>
+
+            <button id="mobile-menu-btn" class="w-10 h-10 bg-gray-100/50 dark:bg-gray-800/50 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-primary focus:outline-none transition-colors" aria-label="Buka Menu">
+                <i id="menu-icon-bars" class="fa-solid fa-bars text-xl transition-transform duration-300"></i>
+                <i id="menu-icon-close" class="fa-solid fa-xmark text-xl hidden transition-transform duration-300"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu (Slide down di luar navbar) -->
+    <div id="mobile-menu" class="md:hidden fixed top-[72px] left-0 w-full bg-white/95 dark:bg-darkbg/95 backdrop-blur-xl border-b border-gray-100 dark:border-gray-800 shadow-xl transform -translate-y-[150%] opacity-0 invisible transition-all duration-500 ease-in-out z-40 rounded-b-3xl">
+        <div class="px-6 pt-4 pb-8 space-y-3 flex flex-col text-center">
+            <a href="#tentang" class="flex items-center justify-center gap-3 px-4 py-4 rounded-2xl text-base font-bold text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-gray-800/50 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-primary dark:hover:text-blue-400 transition-colors"><i class="fa-solid fa-circle-info text-primary/70 dark:text-blue-400/70"></i> Tentang Kami</a>
+            <a href="#program" class="flex items-center justify-center gap-3 px-4 py-4 rounded-2xl text-base font-bold text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-gray-800/50 hover:bg-green-50 dark:hover:bg-gray-800 hover:text-secondary dark:hover:text-green-400 transition-colors"><i class="fa-solid fa-laptop-code text-secondary/70 dark:text-green-400/70"></i> Program</a>
+            <a href="#testimoni" class="flex items-center justify-center gap-3 px-4 py-4 rounded-2xl text-base font-bold text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-gray-800/50 hover:bg-yellow-50 dark:hover:bg-gray-800 hover:text-accent dark:hover:text-yellow-400 transition-colors"><i class="fa-solid fa-star text-accent/70 dark:text-yellow-400/70"></i> Testimoni</a>
+            <a href="#blog" class="flex items-center justify-center gap-3 px-4 py-4 rounded-2xl text-base font-bold text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-gray-800/50 hover:bg-pink-50 dark:hover:bg-gray-800 hover:text-pink-500 dark:hover:text-pink-400 transition-colors"><i class="fa-solid fa-newspaper text-pink-500/70 dark:text-pink-400/70"></i> Blog</a>
+            <div class="h-px w-full bg-gray-200 dark:bg-gray-700 my-4"></div>
+            <button onclick="openModal('login'); toggleMobileMenu(true)" class="block w-full px-4 py-4 text-primary dark:text-blue-400 font-bold border-2 border-primary/20 dark:border-blue-400/20 rounded-2xl">Masuk ke Akun</button>
+            <button onclick="openModal('signup'); toggleMobileMenu(true)" class="block w-full px-4 py-4 bg-gradient-to-r from-accent to-yellow-400 text-slate-900 rounded-2xl font-bold shadow-md mt-2">Daftar Akun Baru</button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-gradient-to-b from-blue-50 to-white dark:from-slate-900 dark:to-darkbg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <!-- Teks Hero -->
+                <div class="w-full lg:w-1/2 text-center lg:text-left">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary dark:from-blue-400 dark:to-green-400 drop-shadow-sm">
+                        Pendidikan Inklusif untuk Masa Depan yang Lebih Baik
+                    </h1>
+                    <p class="text-lg lg:text-2xl text-slate-600 dark:text-gray-300 mb-8 leading-relaxed font-medium">
+                        BERSAMAJU hadir mendampingi dan memberdayakan kaum difabel meraih kemandirian melalui edukasi tanpa batas. Setiap individu berhak sukses!
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                        <button onclick="openModal('signup')" class="bg-accent hover:bg-yellow-500 text-slate-900 font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 focus:ring-4 focus:ring-yellow-300 flex justify-center items-center gap-2">
+                            Mulai Belajar <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <a href="#program" class="bg-transparent border-2 border-primary dark:border-blue-500 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-blue-600 dark:hover:text-white font-bold text-lg px-8 py-4 rounded-full transition text-center flex justify-center items-center">
+                            Kenali Program Kami
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Ilustrasi Hero (Foto Perjuangan Difabel) -->
+                <div class="w-full lg:w-1/2">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl group">
+                        <!-- Gambar difabel sedang belajar bahagia di kelas -->
+                        <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80" 
+                             alt="Seorang siswa difabel tersenyum ceria saat belajar" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/800x600/e2e8f0/475569?text=Ilustrasi+Pendidikan';"
+                             class="w-full h-auto object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+                             loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
+                            <p class="text-white font-semibold p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">Keterbatasan bukan halangan untuk terus belajar.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ornamen Background -->
+        <div class="absolute top-1/4 right-0 w-64 h-64 bg-yellow-200/30 dark:bg-yellow-600/10 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-0 left-10 w-80 h-80 bg-blue-300/20 dark:bg-blue-600/10 rounded-full blur-3xl -z-10"></div>
+    </header>
+
+    <!-- Tentang Kami Section -->
+    <section id="tentang" class="py-20 bg-white dark:bg-darkbg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-primary dark:text-blue-400 font-bold tracking-wider uppercase text-sm mb-2">Tentang BERSAMAJU</h2>
+            <h3 class="text-3xl md:text-4xl font-extrabold text-slate-800 dark:text-white mb-6">Mewujudkan Kesetaraan Melalui Pendidikan</h3>
+            <div class="max-w-3xl mx-auto">
+                <p class="text-lg text-slate-600 dark:text-gray-300 mb-12">
+                    Kami percaya bahwa disabilitas bukanlah batas untuk berkarya. BERSAMAJU merupakan inisiatif sosial yang berfokus pada penyediaan fasilitas belajar, kurikulum khusus, dan pelatihan keterampilan vokasi yang disesuaikan dengan kebutuhan teman-teman difabel di seluruh Indonesia.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Misi 1 -->
+                <div class="p-6 bg-blue-50 dark:bg-darkcard rounded-2xl transition transform hover:-translate-y-2 hover:shadow-lg duration-300 border border-transparent dark:border-gray-700">
+                    <div class="w-16 h-16 mx-auto bg-primary text-white rounded-full flex items-center justify-center text-2xl mb-4 shadow-md">
+                        <i class="fa-solid fa-universal-access"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-800 dark:text-white mb-2">Aksesibilitas Penuh</h4>
+                    <p class="text-slate-600 dark:text-gray-400">Platform dan kurikulum yang didesain 100% ramah terhadap screen reader dan berbagai kebutuhan khusus lainnya.</p>
+                </div>
+                <!-- Misi 2 -->
+                <div class="p-6 bg-green-50 dark:bg-darkcard rounded-2xl transition transform hover:-translate-y-2 hover:shadow-lg duration-300 border border-transparent dark:border-gray-700">
+                    <div class="w-16 h-16 mx-auto bg-secondary text-white rounded-full flex items-center justify-center text-2xl mb-4 shadow-md">
+                        <i class="fa-solid fa-handshake-angle"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-800 dark:text-white mb-2">Pendampingan Ahli</h4>
+                    <p class="text-slate-600 dark:text-gray-400">Belajar bersama mentor dan relawan berpengalaman yang memiliki dedikasi tinggi pada pendidikan inklusif.</p>
+                </div>
+                <!-- Misi 3 -->
+                <div class="p-6 bg-yellow-50 dark:bg-darkcard rounded-2xl transition transform hover:-translate-y-2 hover:shadow-lg duration-300 border border-transparent dark:border-gray-700">
+                    <div class="w-16 h-16 mx-auto bg-accent text-slate-900 rounded-full flex items-center justify-center text-2xl mb-4 shadow-md">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-800 dark:text-white mb-2">Kesiapan Kerja</h4>
+                    <p class="text-slate-600 dark:text-gray-400">Tidak hanya teori, kami membekali peserta dengan keterampilan praktis untuk bersaing di dunia kerja maupun wirausaha.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Unggulan Section -->
+    <section id="program" class="py-20 bg-slate-50 dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-secondary dark:text-green-400 font-bold tracking-wider uppercase text-sm mb-2">Program Unggulan</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-slate-800 dark:text-white">Pilih Kelas yang Sesuai Minatmu</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Program Card 1 -->
+                <div class="bg-white dark:bg-darkcard rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100 dark:border-gray-800 flex flex-col">
+                    <div class="h-2 w-full bg-primary group-hover:bg-accent transition-colors"></div>
+                    <div class="p-8 flex-grow">
+                        <i class="fa-solid fa-laptop-code text-4xl text-primary dark:text-blue-400 mb-6 group-hover:scale-110 transition-transform"></i>
+                        <h4 class="text-2xl font-bold text-slate-800 dark:text-white mb-3">Literasi Digital & Komputer</h4>
+                        <p class="text-slate-600 dark:text-gray-400 mb-6">Pelatihan pengoperasian komputer dasar, Microsoft Office, hingga penggunaan internet aman yang dirancang khusus untuk tunanetra dengan NVDA.</p>
+                    </div>
+                    <div class="px-8 pb-8">
+                        <button onclick="openModal('signup')" class="text-primary dark:text-blue-400 font-bold flex items-center gap-2 group-hover:text-accent dark:group-hover:text-yellow-400 transition">
+                            Daftar Kelas Ini <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Program Card 2 -->
+                <div class="bg-white dark:bg-darkcard rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100 dark:border-gray-800 flex flex-col">
+                    <div class="h-2 w-full bg-secondary group-hover:bg-accent transition-colors"></div>
+                    <div class="p-8 flex-grow">
+                        <i class="fa-solid fa-hands-asl-interpreting text-4xl text-secondary dark:text-green-400 mb-6 group-hover:scale-110 transition-transform"></i>
+                        <h4 class="text-2xl font-bold text-slate-800 dark:text-white mb-3">Kelas Bahasa Isyarat (BISINDO)</h4>
+                        <p class="text-slate-600 dark:text-gray-400 mb-6">Fasilitas belajar bahasa isyarat untuk sahabat tuli maupun masyarakat umum (dengar) guna menciptakan lingkungan yang inklusif.</p>
+                    </div>
+                    <div class="px-8 pb-8">
+                        <button onclick="openModal('signup')" class="text-secondary dark:text-green-400 font-bold flex items-center gap-2 group-hover:text-accent dark:group-hover:text-yellow-400 transition">
+                            Daftar Kelas Ini <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Program Card 3 -->
+                <div class="bg-white dark:bg-darkcard rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100 dark:border-gray-800 flex flex-col">
+                    <div class="h-2 w-full bg-accent group-hover:bg-primary transition-colors"></div>
+                    <div class="p-8 flex-grow">
+                        <i class="fa-solid fa-store text-4xl text-accent dark:text-yellow-400 mb-6 group-hover:scale-110 transition-transform"></i>
+                        <h4 class="text-2xl font-bold text-slate-800 dark:text-white mb-3">Kewirausahaan Mandiri</h4>
+                        <p class="text-slate-600 dark:text-gray-400 mb-6">Pelatihan wirausaha mencakup kerajinan tangan, kuliner, hingga pemasaran digital dasar untuk teman-teman tunadaksa agar mandiri finansial.</p>
+                    </div>
+                    <div class="px-8 pb-8">
+                        <button onclick="openModal('signup')" class="text-accent dark:text-yellow-400 font-bold flex items-center gap-2 group-hover:text-primary dark:group-hover:text-blue-400 transition">
+                            Daftar Kelas Ini <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Kisah Sukses (Slider) Section -->
+    <section id="testimoni" class="py-20 bg-white dark:bg-darkbg overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center relative z-10">
+            <h2 class="text-primary dark:text-blue-400 font-bold tracking-wider uppercase text-sm mb-2">Kisah Sukses</h2>
+            <h3 class="text-3xl md:text-4xl font-extrabold text-slate-800 dark:text-white">Mereka yang Telah Berhasil</h3>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+            <!-- Navigation Arrows Desktop -->
+            <div class="absolute top-1/2 -translate-y-1/2 left-0 lg:-left-6 z-20 hidden md:block">
+                <button id="prev-testi" class="w-12 h-12 bg-white dark:bg-darkcard text-primary dark:text-blue-400 rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transition focus:outline-none focus:ring-4 focus:ring-blue-200">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+            </div>
+            <div class="absolute top-1/2 -translate-y-1/2 right-0 lg:-right-6 z-20 hidden md:block">
+                <button id="next-testi" class="w-12 h-12 bg-white dark:bg-darkcard text-primary dark:text-blue-400 rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transition focus:outline-none focus:ring-4 focus:ring-blue-200">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Slider Track -->
+            <div class="overflow-hidden p-2 -m-2">
+                <div id="testi-track" class="flex gap-6 transition-transform duration-500 ease-in-out w-max">
+                    <!-- Card 1 -->
+                    <div class="w-[300px] md:w-[350px] lg:w-[400px] flex-shrink-0 bg-blue-50 dark:bg-darkcard p-8 rounded-3xl border border-blue-100 dark:border-gray-800 flex flex-col justify-between">
+                        <div>
+                            <i class="fa-solid fa-quote-left text-4xl text-primary/20 dark:text-blue-500/20 mb-4"></i>
+                            <p class="text-lg text-slate-700 dark:text-gray-300 font-medium italic mb-6 whitespace-normal">
+                                "Berkat kelas komputer dari BERSAMAJU, saya yang seorang tunanetra kini bisa bekerja sebagai customer service di perusahaan ternama. Materi NVDA sangat membantu!"
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <img src="https://ui-avatars.com/api/?name=Budi+Santoso&background=2563eb&color=fff" onerror="this.onerror=null;this.src='https://placehold.co/100x100/2563eb/ffffff?text=BS';" alt="Foto Budi" class="w-14 h-14 rounded-full shadow-md">
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-white">Budi Santoso</h4>
+                                <p class="text-sm text-primary dark:text-blue-400 font-semibold">Alumni Kelas Komputer</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="w-[300px] md:w-[350px] lg:w-[400px] flex-shrink-0 bg-green-50 dark:bg-darkcard p-8 rounded-3xl border border-green-100 dark:border-gray-800 flex flex-col justify-between">
+                        <div>
+                            <i class="fa-solid fa-quote-left text-4xl text-secondary/20 dark:text-green-500/20 mb-4"></i>
+                            <p class="text-lg text-slate-700 dark:text-gray-300 font-medium italic mb-6 whitespace-normal">
+                                "Belajar bahasa isyarat di sini sangat menyenangkan. Relawannya sabar dan materi mudah dipahami. Kini saya lebih percaya diri bersosialisasi."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <img src="https://ui-avatars.com/api/?name=Siti+Aisyah&background=16a34a&color=fff" onerror="this.onerror=null;this.src='https://placehold.co/100x100/16a34a/ffffff?text=SA';" alt="Foto Siti" class="w-14 h-14 rounded-full shadow-md">
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-white">Siti Aisyah</h4>
+                                <p class="text-sm text-secondary dark:text-green-400 font-semibold">Alumni Kelas BISINDO</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="w-[300px] md:w-[350px] lg:w-[400px] flex-shrink-0 bg-yellow-50 dark:bg-darkcard p-8 rounded-3xl border border-yellow-100 dark:border-gray-800 flex flex-col justify-between">
+                        <div>
+                            <i class="fa-solid fa-quote-left text-4xl text-accent/20 dark:text-yellow-500/20 mb-4"></i>
+                            <p class="text-lg text-slate-700 dark:text-gray-300 font-medium italic mb-6 whitespace-normal">
+                                "Keterbatasan fisik bukan halangan. Melalui pelatihan wirausaha, saya sukses membuka toko kerajinan online sendiri."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <img src="https://ui-avatars.com/api/?name=Rina+Sari&background=eab308&color=fff" onerror="this.onerror=null;this.src='https://placehold.co/100x100/eab308/ffffff?text=RS';" alt="Foto Rina" class="w-14 h-14 rounded-full shadow-md">
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-white">Rina Sari</h4>
+                                <p class="text-sm text-yellow-600 dark:text-yellow-400 font-semibold">Alumni Wirausaha</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 4 -->
+                    <div class="w-[300px] md:w-[350px] lg:w-[400px] flex-shrink-0 bg-pink-50 dark:bg-darkcard p-8 rounded-3xl border border-pink-100 dark:border-gray-800 flex flex-col justify-between">
+                        <div>
+                            <i class="fa-solid fa-quote-left text-4xl text-pink-500/20 dark:text-pink-500/20 mb-4"></i>
+                            <p class="text-lg text-slate-700 dark:text-gray-300 font-medium italic mb-6 whitespace-normal">
+                                "Awalnya saya malu bicara. Sejak ikut kelas Public Speaking, saya berani membagikan kisah saya di depan umum untuk menginspirasi teman difabel lain."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <img src="https://ui-avatars.com/api/?name=Andi+Dharma&background=ec4899&color=fff" onerror="this.onerror=null;this.src='https://placehold.co/100x100/ec4899/ffffff?text=AD';" alt="Foto Andi" class="w-14 h-14 rounded-full shadow-md">
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-white">Andi Dharma</h4>
+                                <p class="text-sm text-pink-600 dark:text-pink-400 font-semibold">Alumni Public Speaking</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div class="flex justify-center gap-4 mt-8 md:hidden">
+                 <button id="prev-testi-mobile" class="w-10 h-10 bg-white dark:bg-darkcard text-primary dark:text-blue-400 rounded-full shadow-md flex items-center justify-center hover:bg-primary hover:text-white transition focus:outline-none"><i class="fa-solid fa-chevron-left"></i></button>
+                 <button id="next-testi-mobile" class="w-10 h-10 bg-white dark:bg-darkcard text-primary dark:text-blue-400 rounded-full shadow-md flex items-center justify-center hover:bg-primary hover:text-white transition focus:outline-none"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-20 bg-slate-50 dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-secondary dark:text-green-400 font-bold tracking-wider uppercase text-sm mb-2">Artikel</h2>
+                    <h3 class="text-3xl md:text-4xl font-extrabold text-slate-800 dark:text-white">Blog & Berita Terbaru</h3>
+                </div>
+                <button class="hidden md:block text-primary dark:text-blue-400 font-bold hover:underline">Lihat Semua Tulisan <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Blog 1 -->
+                <div class="bg-white dark:bg-darkcard rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition group cursor-pointer border border-gray-100 dark:border-gray-800">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&q=80" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=Edukasi';" alt="Belajar bersama" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-secondary dark:text-green-400 uppercase tracking-wider mb-2 block">Edukasi</span>
+                        <h4 class="text-xl font-bold text-slate-800 dark:text-white mb-2 group-hover:text-primary transition">Pentingnya Kurikulum Vokasi Adaptif</h4>
+                        <p class="text-slate-600 dark:text-gray-400 text-sm mb-4 line-clamp-3">Membahas bagaimana kurikulum yang disesuaikan dengan kebutuhan difabel dapat meningkatkan potensi penyerapan kerja secara signifikan di era modern.</p>
+                        <span class="text-sm text-gray-500 dark:text-gray-500">12 Oktober 2026</span>
+                    </div>
+                </div>
+                <!-- Blog 2 -->
+                <div class="bg-white dark:bg-darkcard rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition group cursor-pointer border border-gray-100 dark:border-gray-800">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&q=80" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=Teknologi';" alt="Alat bantu dengar" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-primary dark:text-blue-400 uppercase tracking-wider mb-2 block">Teknologi</span>
+                        <h4 class="text-xl font-bold text-slate-800 dark:text-white mb-2 group-hover:text-primary transition">5 Aplikasi Pendukung Belajar Netra</h4>
+                        <p class="text-slate-600 dark:text-gray-400 text-sm mb-4 line-clamp-3">Ulasan mendalam mengenai screen reader dan aplikasi berbasis AI terbaru yang memudahkan teman-teman tunanetra dalam membaca materi digital.</p>
+                        <span class="text-sm text-gray-500 dark:text-gray-500">08 Oktober 2026</span>
+                    </div>
+                </div>
+                <!-- Blog 3 -->
+                <div class="bg-white dark:bg-darkcard rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition group cursor-pointer border border-gray-100 dark:border-gray-800">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=600&q=80" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=Kisah+Inspiratif';" alt="Orang berkumpul di acara" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-accent dark:text-yellow-500 uppercase tracking-wider mb-2 block">Kisah Inspiratif</span>
+                        <h4 class="text-xl font-bold text-slate-800 dark:text-white mb-2 group-hover:text-primary transition">Merajut Mimpi Lewat Kerajinan Rotan</h4>
+                        <p class="text-slate-600 dark:text-gray-400 text-sm mb-4 line-clamp-3">Cerita dari Kak Dimas, alumni pelatihan wirausaha BERSAMAJU yang produk kerajinan tangannya berhasil menembus pasar ekspor Asia.</p>
+                        <span class="text-sm text-gray-500 dark:text-gray-500">01 Oktober 2026</span>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="md:hidden mt-8 w-full py-3 text-center border-2 border-primary text-primary dark:border-blue-400 dark:text-blue-400 rounded-full font-bold">Lihat Semua Tulisan</button>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 relative overflow-hidden bg-gradient-to-br from-primary to-secondary">
+        <!-- Dekorasi Background -->
+        <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-white opacity-10 rounded-full blur-3xl"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 relative z-10 text-center text-white">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">Mari Wujudkan Kesetaraan Pendidikan Bersama BERSAMAJU</h2>
+            <p class="text-xl opacity-90 mb-10 max-w-2xl mx-auto">Anda dapat berkontribusi dengan menjadi relawan pengajar, mendonasikan fasilitas belajar, atau membagikan cerita kami.</p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="openModal('signup')" class="bg-accent hover:bg-yellow-400 text-slate-900 font-bold text-lg px-8 py-4 rounded-full shadow-lg transition transform hover:scale-105">
+                    <i class="fa-solid fa-hands-holding-child mr-2"></i> Gabung Relawan
+                </button>
+                <button onclick="alert('Fitur donasi akan segera hadir!')" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary font-bold text-lg px-8 py-4 rounded-full transition transform hover:scale-105">
+                    <i class="fa-solid fa-heart mr-2"></i> Dukung Kami (Donasi)
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 py-16 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <!-- Kolom 1: Brand -->
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center mb-6">
+                        <!-- Update logo footer -->
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white mr-2 shadow-sm">
+                            <i class="fa-solid fa-hands-holding-child text-sm"></i>
+                        </div>
+                        <span class="font-extrabold text-xl text-white">BERSAMAJU</span>
+                    </div>
+                    <p class="text-sm opacity-80 mb-6">Membuka akses tanpa batas untuk pendidikan inklusif di Indonesia.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Kolom 2: Tautan Cepat -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase text-sm tracking-wider">Tautan Cepat</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#tentang" class="hover:text-accent transition">Tentang Kami</a></li>
+                        <li><a href="#program" class="hover:text-accent transition">Program Belajar</a></li>
+                        <li><a href="#testimoni" class="hover:text-accent transition">Kisah Sukses</a></li>
+                        <li><a href="#blog" class="hover:text-accent transition">Blog & Artikel</a></li>
+                    </ul>
+                </div>
+
+                <!-- Kolom 3: Bantuan -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase text-sm tracking-wider">Bantuan & Legal</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#" class="hover:text-accent transition">FAQ / Pertanyaan Umum</a></li>
+                        <li><a href="#" class="hover:text-accent transition">Kebijakan Privasi</a></li>
+                        <li><a href="#" class="hover:text-accent transition">Syarat & Ketentuan</a></li>
+                        <li><a href="#" class="hover:text-accent transition">Panduan Aksesibilitas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Kolom 4: Kontak -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase text-sm tracking-wider">Hubungi Kami</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-location-dot mt-1 mr-3 text-accent"></i>
+                            <span>Gedung Inklusi, Jl. Pendidikan No. 10, Jakarta Selatan, 12345</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-envelope mr-3 text-accent"></i>
+                            <a href="mailto:halo@bersamaju.id" class="hover:text-white transition">halo@bersamaju.id</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-brands fa-whatsapp mr-3 text-accent text-lg"></i>
+                            <a href="#" class="hover:text-white transition">+62 811 2233 4455</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-800 mt-12 pt-8 text-center text-sm opacity-70">
+                <p>&copy; 2026 BERSAMAJU. All rights reserved. Dibangun dengan cinta dan kepedulian.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Accessibility Floating Button -->
+    <button id="floating-a11y-btn" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center text-2xl hover:bg-blue-700 transition transform hover:scale-110 focus:ring-4 focus:ring-blue-300" aria-label="Buka Menu Aksesibilitas">
+        <i class="fa-solid fa-wheelchair"></i>
+    </button>
+
+    <!-- Accessibility Panel (Sidebar Kanan) yang lebih rapih -->
+    <div id="a11y-panel" class="fixed top-0 right-0 h-full w-80 bg-white dark:bg-darkbg shadow-2xl z-[60] transform translate-x-full opacity-0 transition-all duration-300 overflow-y-auto border-l border-gray-100 dark:border-gray-800">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-6 border-b border-gray-100 dark:border-gray-800 pb-4">
+                <h3 class="font-bold text-xl text-slate-800 dark:text-white flex items-center">
+                    <i class="fa-solid fa-universal-access text-primary dark:text-blue-400 mr-2"></i> Aksesibilitas
+                </h3>
+                <button id="close-a11y-btn" class="text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 text-xl w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition" aria-label="Tutup Menu">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Ukuran Teks -->
+                <div class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-2xl border border-gray-100 dark:border-gray-700">
+                    <label class="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-3">Ukuran Teks</label>
+                    <div class="flex gap-2">
+                        <button id="a11y-increase-text" class="flex-1 bg-white dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 text-slate-800 dark:text-white py-2 rounded-xl font-bold border border-gray-200 dark:border-gray-600 transition shadow-sm" aria-label="Perbesar Teks">A+</button>
+                        <button id="a11y-decrease-text" class="flex-1 bg-white dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 text-slate-800 dark:text-white py-2 rounded-xl font-bold border border-gray-200 dark:border-gray-600 transition shadow-sm" aria-label="Perkecil Teks">A-</button>
+                    </div>
+                </div>
+
+                <!-- Kontras -->
+                <div>
+                    <button id="a11y-high-contrast" class="w-full flex items-center justify-between bg-white dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-gray-700 text-slate-800 dark:text-white py-3 px-4 rounded-xl font-semibold border-2 border-gray-100 dark:border-gray-700 transition shadow-sm">
+                        <span>Kontras Tinggi</span>
+                        <i class="fa-solid fa-circle-half-stroke text-gray-400 dark:text-gray-500 transition-colors"></i>
+                    </button>
+                </div>
+
+                <!-- Font Disleksia -->
+                <div>
+                    <button id="a11y-dyslexia" class="w-full flex items-center justify-between bg-white dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-gray-700 text-slate-800 dark:text-white py-3 px-4 rounded-xl font-semibold border-2 border-gray-100 dark:border-gray-700 transition shadow-sm">
+                        <span>Font Disleksia</span>
+                        <i class="fa-solid fa-font text-gray-400 dark:text-gray-500 transition-colors"></i>
+                    </button>
+                </div>
+
+                <!-- Hentikan Animasi -->
+                <div>
+                    <button id="a11y-stop-animation" class="w-full flex items-center justify-between bg-white dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-gray-700 text-slate-800 dark:text-white py-3 px-4 rounded-xl font-semibold border-2 border-gray-100 dark:border-gray-700 transition shadow-sm">
+                        <span>Hentikan Animasi</span>
+                        <i class="fa-solid fa-pause text-gray-400 dark:text-gray-500 transition-colors"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-6 border-t border-gray-100 dark:border-gray-800">
+                <button onclick="window.location.reload()" class="w-full text-sm text-red-500 font-bold hover:underline flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-rotate-right"></i> Reset Pengaturan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Form (Login / Sign Up) -->
+    <div id="auth-modal" class="fixed inset-0 z-[70] hidden opacity-0 transition-opacity duration-300">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="flex items-center justify-center min-h-screen px-4 relative z-10">
+            <div id="auth-modal-content" class="relative bg-white dark:bg-darkcard w-full max-w-md p-8 rounded-3xl shadow-2xl transform scale-95 opacity-0 transition-all duration-300 flex flex-col border border-gray-100 dark:border-gray-800">
+                <!-- Close Button -->
+                <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-slate-800 dark:hover:text-white transition text-xl w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex justify-center items-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <div class="text-center mb-8 mt-2">
+                    <!-- Update Logo form auth -->
+                    <div class="w-12 h-12 mx-auto bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white mb-4 shadow-md">
+                        <i class="fa-solid fa-hands-holding-child text-xl"></i>
+                    </div>
+                    <h2 id="auth-title" class="text-2xl font-extrabold text-slate-800 dark:text-white">Masuk ke Akun</h2>
+                    <p class="text-slate-500 dark:text-gray-400 mt-2 text-sm">Selamat datang kembali di platform BERSAMAJU.</p>
+                </div>
+
+                <form onsubmit="submitAuth(event)" class="space-y-4">
+                    <div id="name-field" class="hidden transition-all duration-300">
+                        <label class="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-1">Nama Lengkap</label>
+                        <input type="text" placeholder="Masukkan nama Anda" class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-1">Email</label>
+                        <input type="email" required placeholder="email@contoh.com" class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-1">Kata Sandi</label>
+                        <input type="password" required placeholder="••••••••" class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                    </div>
+                    
+                    <button type="submit" id="auth-submit" class="w-full bg-primary hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md mt-6">
+                        Masuk
+                    </button>
+                </form>
+
+                <div class="mt-6 text-center text-sm text-slate-600 dark:text-gray-400 border-t border-gray-100 dark:border-gray-800 pt-6">
+                    <span id="auth-toggle-text">Belum punya akun? </span>
+                    <a href="#" id="auth-toggle-link" onclick="toggleAuthMode(event)" class="text-primary dark:text-blue-400 font-bold hover:underline">Daftar di sini</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Dark Mode Logic ---
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
+            const darkIcons = document.querySelectorAll('.fa-moon');
+            const lightIcons = document.querySelectorAll('.fa-sun');
+
+            function updateThemeIcons() {
+                const isDark = document.documentElement.classList.contains('dark');
+                darkIcons.forEach(icon => {
+                    if (isDark) icon.classList.add('hidden');
+                    else icon.classList.remove('hidden');
+                });
+                lightIcons.forEach(icon => {
+                    if (isDark) icon.classList.remove('hidden');
+                    else icon.classList.add('hidden');
+                });
+            }
+
+            function toggleTheme() {
+                document.documentElement.classList.toggle('dark');
+                if (document.documentElement.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+                updateThemeIcons();
+            }
+
+            themeToggleBtn?.addEventListener('click', toggleTheme);
+            themeToggleMobileBtn?.addEventListener('click', toggleTheme);
+            
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+            updateThemeIcons();
+
+            // --- Navbar Scroll Shrink & Glassmorphism ---
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    navbar?.classList.add('md:top-3', 'md:py-2', 'shadow-md', 'bg-white/95', 'dark:bg-darkbg/95', 'md:border-gray-200', 'dark:md:border-gray-700');
+                    navbar?.classList.remove('md:top-6', 'md:py-3', 'shadow-sm', 'bg-white/70', 'dark:bg-darkbg/70', 'md:border-gray-200/50', 'dark:md:border-gray-700/50');
+                } else {
+                    navbar?.classList.add('md:top-6', 'md:py-3', 'shadow-sm', 'bg-white/70', 'dark:bg-darkbg/70', 'md:border-gray-200/50', 'dark:md:border-gray-700/50');
+                    navbar?.classList.remove('md:top-3', 'md:py-2', 'shadow-md', 'bg-white/95', 'dark:bg-darkbg/95', 'md:border-gray-200', 'dark:md:border-gray-700');
+                }
+            });
+
+            // --- Mobile Menu Logic ---
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIconBars = document.getElementById('menu-icon-bars');
+            const menuIconClose = document.getElementById('menu-icon-close');
+            const mobileLinks = mobileMenu?.querySelectorAll('a');
+
+            window.toggleMobileMenu = function(forceClose = false) {
+                if (!mobileMenu) return;
+                const isHidden = mobileMenu.classList.contains('-translate-y-full');
+                
+                if (isHidden && !forceClose) {
+                    mobileMenu.classList.remove('-translate-y-full', 'opacity-0', 'invisible');
+                    mobileMenu.classList.add('translate-y-0', 'opacity-100', 'visible');
+                    menuIconBars?.classList.add('hidden');
+                    menuIconClose?.classList.remove('hidden');
+                } else {
+                    mobileMenu.classList.add('-translate-y-full', 'opacity-0', 'invisible');
+                    mobileMenu.classList.remove('translate-y-0', 'opacity-100', 'visible');
+                    menuIconBars?.classList.remove('hidden');
+                    menuIconClose?.classList.add('hidden');
+                }
+            };
+
+            mobileMenuBtn?.addEventListener('click', () => window.toggleMobileMenu());
+
+            mobileLinks?.forEach(link => {
+                link.addEventListener('click', () => window.toggleMobileMenu(true));
+            });
+
+            // --- Accessibility Widget Logic ---
+            const floatingA11yBtn = document.getElementById('floating-a11y-btn');
+            const closeA11yBtn = document.getElementById('close-a11y-btn');
+            const a11yPanel = document.getElementById('a11y-panel');
+            
+            floatingA11yBtn?.addEventListener('click', (e) => {
+                e.preventDefault();
+                a11yPanel?.classList.toggle('translate-x-full');
+                a11yPanel?.classList.toggle('opacity-0');
+            });
+
+            closeA11yBtn?.addEventListener('click', () => {
+                a11yPanel?.classList.add('translate-x-full', 'opacity-0');
+            });
+
+            // Helper function to toggle button active styling
+            function setBtnActiveStyle(btnId, isActive) {
+                const btn = document.getElementById(btnId);
+                if (!btn) return;
+                const icon = btn.querySelector('i');
+                if (isActive) {
+                    btn.classList.add('border-primary', 'bg-blue-50', 'dark:bg-blue-900/30', 'text-primary');
+                    btn.classList.remove('border-gray-100', 'dark:border-gray-700', 'bg-white', 'dark:bg-gray-800', 'text-slate-800', 'dark:text-white');
+                    if (icon) {
+                        icon.classList.add('text-primary');
+                        icon.classList.remove('text-gray-400', 'dark:text-gray-500');
+                    }
+                } else {
+                    btn.classList.remove('border-primary', 'bg-blue-50', 'dark:bg-blue-900/30', 'text-primary');
+                    btn.classList.add('border-gray-100', 'dark:border-gray-700', 'bg-white', 'dark:bg-gray-800', 'text-slate-800', 'dark:text-white');
+                    if (icon) {
+                        icon.classList.remove('text-primary');
+                        icon.classList.add('text-gray-400', 'dark:text-gray-500');
+                    }
+                }
+            }
+
+            // Fitur Aksesibilitas Khusus
+            let currentTextSize = 100;
+
+            document.getElementById('a11y-increase-text')?.addEventListener('click', () => {
+                if(currentTextSize < 150) currentTextSize += 10;
+                document.documentElement.style.fontSize = currentTextSize + '%';
+            });
+
+            document.getElementById('a11y-decrease-text')?.addEventListener('click', () => {
+                if(currentTextSize > 80) currentTextSize -= 10;
+                document.documentElement.style.fontSize = currentTextSize + '%';
+            });
+
+            document.getElementById('a11y-high-contrast')?.addEventListener('click', () => {
+                document.documentElement.classList.toggle('a11y-high-contrast');
+                const isActive = document.documentElement.classList.contains('a11y-high-contrast');
+                setBtnActiveStyle('a11y-high-contrast', isActive);
+                
+                // Paksa masuk mode gelap jika high contrast aktif agar warnanya cocok
+                if(isActive && !document.documentElement.classList.contains('dark')){
+                    document.documentElement.classList.add('dark');
+                    updateThemeIcons();
+                }
+            });
+
+            document.getElementById('a11y-dyslexia')?.addEventListener('click', () => {
+                document.documentElement.classList.toggle('a11y-dyslexia-font');
+                setBtnActiveStyle('a11y-dyslexia', document.documentElement.classList.contains('a11y-dyslexia-font'));
+            });
+
+            document.getElementById('a11y-stop-animation')?.addEventListener('click', () => {
+                // Terapkan class ke tag HTML (documentElement) agar mematikan scroll-smooth dan semua animasi global
+                document.documentElement.classList.toggle('a11y-stop-animations');
+                setBtnActiveStyle('a11y-stop-animation', document.documentElement.classList.contains('a11y-stop-animations'));
+            });
+
+            // --- Testimonial Slider Logic ---
+            const testiTrack = document.getElementById('testi-track');
+            const prevBtns = [document.getElementById('prev-testi'), document.getElementById('prev-testi-mobile')];
+            const nextBtns = [document.getElementById('next-testi'), document.getElementById('next-testi-mobile')];
+            
+            let currentIndex = 0;
+            
+            function updateSlider() {
+                if (!testiTrack || !testiTrack.children.length) return;
+                
+                const card = testiTrack.children[0];
+                const gap = 24; 
+                const cardWidth = card.offsetWidth + gap;
+                
+                const containerWidth = testiTrack.parentElement.offsetWidth;
+                const visibleCards = Math.floor(containerWidth / cardWidth) || 1;
+                const maxIndex = testiTrack.children.length - visibleCards;
+                
+                if (currentIndex > maxIndex) currentIndex = maxIndex;
+                if (currentIndex < 0) currentIndex = 0;
+                
+                testiTrack.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+            }
+
+            function slide(direction) {
+                currentIndex += direction;
+                updateSlider();
+            }
+
+            prevBtns.forEach(btn => btn?.addEventListener('click', () => slide(-1)));
+            nextBtns.forEach(btn => btn?.addEventListener('click', () => slide(1)));
+            
+            window.addEventListener('resize', updateSlider);
+
+            // --- Modal Auth Logic (Login / Sign Up) ---
+            const authModal = document.getElementById('auth-modal');
+            const authModalContent = document.getElementById('auth-modal-content');
+            const authTitle = document.getElementById('auth-title');
+            const authSubmit = document.getElementById('auth-submit');
+            const authToggleText = document.getElementById('auth-toggle-text');
+            const authToggleLink = document.getElementById('auth-toggle-link');
+            const nameField = document.getElementById('name-field');
+
+            let isLoginMode = true;
+
+            window.openModal = function(type) {
+                if (!authModal) return;
+                authModal.classList.remove('hidden');
+                setTimeout(() => {
+                    authModal.classList.remove('opacity-0');
+                    authModalContent?.classList.remove('scale-95', 'opacity-0');
+                }, 10);
+
+                if (type === 'login') {
+                    setLoginMode();
+                } else {
+                    setSignupMode();
+                }
+            };
+
+            window.closeModal = function() {
+                if (!authModal) return;
+                authModal.classList.add('opacity-0');
+                authModalContent?.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    authModal.classList.add('hidden');
+                }, 300);
+            };
+
+            function setLoginMode() {
+                isLoginMode = true;
+                if(authTitle) authTitle.textContent = 'Masuk ke Akun';
+                if(authSubmit) authSubmit.textContent = 'Masuk';
+                if(authToggleText) authToggleText.textContent = 'Belum punya akun? ';
+                if(authToggleLink) authToggleLink.textContent = 'Daftar di sini';
+                nameField?.classList.add('hidden');
+                nameField?.querySelector('input')?.removeAttribute('required');
+            }
+
+            function setSignupMode() {
+                isLoginMode = false;
+                if(authTitle) authTitle.textContent = 'Daftar Akun Baru';
+                if(authSubmit) authSubmit.textContent = 'Daftar';
+                if(authToggleText) authToggleText.textContent = 'Sudah punya akun? ';
+                if(authToggleLink) authToggleLink.textContent = 'Masuk di sini';
+                nameField?.classList.remove('hidden');
+                nameField?.querySelector('input')?.setAttribute('required', 'true');
+            }
+
+            window.toggleAuthMode = function(e) {
+                e.preventDefault();
+                if (isLoginMode) setSignupMode();
+                else setLoginMode();
+            };
+
+            window.submitAuth = function(e) {
+                e.preventDefault();
+                const btn = document.getElementById('auth-submit');
+                if (!btn) return;
+                const originalText = btn.textContent;
+                
+                btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Memproses...';
+                btn.disabled = true;
+                btn.classList.add('opacity-70', 'cursor-not-allowed');
+
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> Berhasil!';
+                    btn.classList.remove('bg-primary', 'hover:bg-blue-700', 'opacity-70', 'cursor-not-allowed');
+                    btn.classList.add('bg-green-500', 'hover:bg-green-600', 'text-white');
+                    
+                    setTimeout(() => {
+                        closeModal();
+                        setTimeout(() => {
+                            btn.textContent = originalText;
+                            btn.disabled = false;
+                            btn.classList.remove('bg-green-500', 'hover:bg-green-600');
+                            btn.classList.add('bg-primary', 'hover:bg-blue-700');
+                            e.target.reset(); 
+                        }, 400);
+                    }, 1000);
+                }, 1500);
+            };
+        });
+    </script>
+</body>
+</html>
